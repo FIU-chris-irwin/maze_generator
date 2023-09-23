@@ -101,7 +101,7 @@ def validate_maze(maze, start, goal):
 width = int(input('Enter the width of the maze: '))
 height = int(input('Enter the height of the maze: '))
 density = float(input('Enter the barrier density (0.0 to 0.4 for best results): '))
-max_tries = 10
+max_tries = 1000
 
 maze = maze_array(width, height)
 count = 0
@@ -114,9 +114,11 @@ while valid == False:
     valid = validate_maze(maze, start, goal)
 
     if count > max_tries:
-        print('I have tried 1,0000 random mazes and was not able to make a solvable maze with the specified dimensions and density. Please try adjusting the parameters.')
+        print('I have tried', max_tries, 'random mazes and was not able to make a solvable maze with the specified dimensions and density. Please try adjusting the parameters.')
         break
 # Save the maze to a file
 with open("random_maze.txt", "w+") as file:
     for row in maze:
         file.write("".join(row) + "\n")
+
+print('Maze saved to random_maze.txt')
